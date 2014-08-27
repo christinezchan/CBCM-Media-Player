@@ -32,6 +32,26 @@ Ext.application({
           xtype: 'View'
             }]
      });
+	 		{
+			Ext.Ajax.request({
+				disableCaching : false,
+				url : MyApp.app.SERVERurl,
+				method: 'GET',
+				dataType: 'json',
+				
+				success: function(response){
+					
+					var jsonData = Ext.JSON.decode(response.responseText);
+					console.log(JSON.parse(response.responseText), 'SUCCESS: AQUIRE JSON');
+					var resultMessage = JSON.parse(response.responseText);
+                },
+                failure: function (response) {
+                	var jsonData = Ext.JSON.decode(response.responseText);
+					console.log(JSON.parse(response.responseText), 'FAILURE: AQUIRE JSON');
+                }
+
+			});
+		}
     }
      
 });
